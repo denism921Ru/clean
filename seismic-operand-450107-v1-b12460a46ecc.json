@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "seismic-operand-450107-v1",
+  "private_key_id": "b12460a46ecc9803cf90351fc7b566e5650237ab",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCqPuTSwj6vgTl8\nnqiftOUX72M5cZngN6geqF2x3r7rST8aHL6XNMa5B+huayJpJaswPLElGEVmOnqm\nTNQq3UkSP9/8VQq5eRnIH7t4eg4xqOWYAHaIp81XaSS+/D4W1TCKYq/fiRwN7Ubv\nxQ2SmJUrm1i2xXYL4qh/h5/hQDGFLluENjC3Rlpeid+jmzEaC/9rkWtCEXNQy8hD\nFkr43dE3By2yRFRLQrtDEFCrjZSlvckA6e36BAicAIPeT9YVDf85rsdMZ7IeyOB/\nzrMaFFVqFjG4Fuqxsg41cUUNH18TFqngj3HtUmrLg2sqaZB6a5P/3eqtQ0wq3DID\nUaqdwYSJAgMBAAECggEANVxYQX0Tw9PHrnlWVhSPd/SXD7K9LcuUHOPd1joAcmP3\nbNpUnLU0kltZrX5T/0wIv6pORde5LOUoe0Z6e+L3G8q8jG0lWuQLwi+8BXOQTl1n\ndUCz5npeAMdadqg+V87Dk6SCBpkFm5HjGZUUf33mx4+9+y+iI/CLqslaQfJqcxkF\nEHjZAEPpCLKTlXDbt5nvWrvqGCW7xF0yCbog/TshVgeiTmA9wYOSKncVH8hU50CN\nVwhi51fPmScd79UQ9F1vxUPVPaNxwMYZXsA9hs6YaB+pwVZ8q79p3PhwiJK2EJzW\n7vZJ7dUrBkeAeYCV6jMwfnUalFx6qwKzjSuARU0hDwKBgQDcvAMXlrG2O/Yu2xi5\nhcta92hjSoi5i79rORL3/kCFmzAlAnTT6BUvQwWdALReb4d/Ym+H2qa+9E06v1If\n9qJ9q5+dgM8zB4yLflGxolTJN5EK/8LhKt7whJmUeSV+Brm+QIBRVB4HspNa3gEt\nbhWAqsMeCnVPQzm/pF8U/Kcs7wKBgQDFcedR3jMnuEan50fMLPLFQmZshTxX9lNm\nvgBshDse3blIFXE4car2NkadUttliY/0ZIY6CIYo0qf5h4ohQRRo4GK+UxruXctc\n/W4r+7aCdhqSo8MSilgj36khKJbZiRoiBUcBMPXQdQktx1TlfyPi5RI2Uawrm8OX\nF+3P41lWBwKBgQDO42G6kEHM3nKmBDEuYhryDgZHWirATh2B8CK5UhNDpur/JUg+\n/b4taBIwz+I+ySYk3SxQFz5GqFBiicP9tXsjcuLOC1cpKyAt9p23csEpP+2wc3xC\n8521rXMNWGctsjwR9/7NO5xR9qxqdL6ByDZbPLJYy9CcFBRibTu5Pf2q/QKBgQCa\nf6C0bRy2Tfnr1IxX9iwZsvWWoUMwyW1FjhOi1m20n2cmQrEPq9JNSvdCj91hvJzK\nbgaiTp08QGp0VVz+3H/t+PcLWthOAVLqdtzIyfRsbaIpcL9qOJrzp0YezjYMDr5G\nNL707azL62i9S6bg1fXsy7bOjmYc0YvhJTZPX+U97QKBgBMdP+k2wzmFz6vNEToO\n/618yWWtMGCuS8smfgP3CeHAPwaVmCJWI3rYx7O00duSoS2XgYU5DSXxBKi1k+nP\niwKjbssmtz2d3g9j3nVYU6uXEte+5AW53rU/KgI+O8WD9T7V5qjdQ9sILRNC8wST\ndYvsUQzMvSG8qkmSqpwc29Ce\n-----END PRIVATE KEY-----\n",
+  "client_email": "clean-720@seismic-operand-450107-v1.iam.gserviceaccount.com",
+  "client_id": "109941894911465460852",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/clean-720%40seismic-operand-450107-v1.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
