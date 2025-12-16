@@ -1,0 +1,10 @@
+app = "clean-housekeeper-bot"
+primary_region = "ams"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PYTHONUNBUFFERED = "1"
+
+# ВАЖНО: никаких [http_service] не добавляем — порты не нужны
