@@ -1,40 +1,26 @@
 import asyncio
+import logging
 
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, F
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 from aiogram.filters import CommandStart
-from aiogram.fsm.context import FSMContext
-from aiogram.fsm.storage.memory import MemoryStorage
 
 from config import BOT_TOKEN
-from states import RoleState
 
-# -------------------------
-# ВРЕМЕННОЕ ХРАНИЛИЩЕ РОЛЕЙ
-# user_id: "admin" | "housekeeper"
-# -------------------------
-USER_ROLES = {}
+logging.basicConfig(level=logging.INFO)
+
+bot = Bot(token=BOT_TOKEN)
+dp = Dispatcher()
+
+# Простое хранилище ролей (позже заменим на БД)
+user_roles = {}
 
 
-# -------------------------
-# КЛАВИАТУРЫ
-# -------------------------
 def role_keyboard():
     return ReplyKeyboardMarkup(
         keyboard=[
-            [KeyboardButton(text="👩‍🧹 Я горничная")],
-            [KeyboardButton(text="🧑‍💼 Я администратор")]
-        ],
-        resize_keyboard=True
-    )
-
-
-def admin_menu():
-    return ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(text="➕ Назначить уборку")],
-            [KeyboardButton(text="👩‍🧹 Мои горничные")],
-            [KeyboardButton(text="📋 Мои уборки")]
+            [KeyboardButton(text="🧹 Я горничная")],
+            [KeyboardButton(text="👨‍💼 Я администратор")]
         ],
         resize_keyboard=True
     )
@@ -43,80 +29,65 @@ def admin_menu():
 def housekeeper_menu():
     return ReplyKeyboardMarkup(
         keyboard=[
-            [KeyboardButton(text="▶️ Начать смену")],
-            [KeyboardButton(text="🧹 Мои уборки")]
+            [KeyboardButton(text="📋 Мои уборки")],
+            [KeyboardButton(text="▶️ Начать смену")]
         ],
         resize_keyboard=True
     )
 
 
-# -------------------------
-# /start
-# -------------------------
-async def start_handler(message: Message, state: FSMContext):
+def admin_menu():
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="📋 Мои горничные")],
+            [KeyboardButton(text="➕ Назначить уборку")]
+        ],
+        resize_keyboard=True
+    )
+
+
+@dp.message(CommandStart())
+async def start(message: Message):
     user_id = message.from_user.id
 
-    # Если роль уже выбрана — сразу меню
-    if user_id in USER_ROLES:
-        role = USER_ROLES[user_id]
-
-        if role == "admin":
-            await message.answer("👋 Ты администратор", reply_markup=admin_menu())
+    if user_id not in user_roles:
+        await message.answer(
+            "Привет! Выбери свою роль:",
+            reply_markup=role_keyboard()
+        )
+    else:
+        role = user_roles[user_id]
+        if role == "housekeeper":
+            await message.answer(
+                "Ты вошла как горничная 👇",
+                reply_markup=housekeeper_menu()
+            )
         else:
-            await message.answer("👋 Ты горничная", reply_markup=housekeeper_menu())
-        return
+            await message.answer(
+                "Ты вошёл как администратор 👇",
+                reply_markup=admin_menu()
+            )
 
-    # Если роли нет — предлагаем выбрать
+
+@dp.message(F.text == "🧹 Я горничная")
+async def set_housekeeper(message: Message):
+    user_roles[message.from_user.id] = "housekeeper"
     await message.answer(
-        "Привет! Кто ты?",
-        reply_markup=role_keyboard()
-    )
-    await state.set_state(RoleState.choosing_role)
-
-
-# -------------------------
-# ВЫБОР РОЛИ
-# -------------------------
-async def choose_housekeeper(message: Message, state: FSMContext):
-    USER_ROLES[message.from_user.id] = "housekeeper"
-    await state.clear()
-
-    await message.answer(
-        "👩‍🧹 Роль сохранена: горничная",
+        "Роль сохранена: горничная 🧹",
         reply_markup=housekeeper_menu()
     )
 
 
-async def choose_admin(message: Message, state: FSMContext):
-    USER_ROLES[message.from_user.id] = "admin"
-    await state.clear()
-
+@dp.message(F.text == "👨‍💼 Я администратор")
+async def set_admin(message: Message):
+    user_roles[message.from_user.id] = "admin"
     await message.answer(
-        "🧑‍💼 Роль сохранена: администратор",
+        "Роль сохранена: администратор 👨‍💼",
         reply_markup=admin_menu()
     )
 
 
-# -------------------------
-# MAIN
-# -------------------------
 async def main():
-    bot = Bot(token=BOT_TOKEN)
-    dp = Dispatcher(storage=MemoryStorage())
-
-    dp.message.register(start_handler, CommandStart())
-    dp.message.register(
-        choose_housekeeper,
-        RoleState.choosing_role,
-        lambda m: "горничная" in m.text.lower()
-    )
-    dp.message.register(
-        choose_admin,
-        RoleState.choosing_role,
-        lambda m: "администратор" in m.text.lower()
-    )
-
-    print("Bot started")
     await dp.start_polling(bot)
 
 
