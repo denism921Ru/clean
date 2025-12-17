@@ -12,7 +12,9 @@ from states import RoleSelect
 # временное хранилище ролей (позже заменим на БД)
 USERS = {}  # user_id -> role
 
-
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.fsm.context import FSMContext
+from states import RoleState
 def role_keyboard():
     return ReplyKeyboardMarkup(
         keyboard=[
