@@ -7,5 +7,9 @@ primary_region = "ams"
 [env]
   PYTHONUNBUFFERED = "1"
 
+# ❗️ГОВОРИМ FLY: ЭТО WORKER, НЕ WEB
 [processes]
-  app = "python main.py"
+  worker = "python main.py"
+
+# ❗️ОТКЛЮЧАЕМ HTTP ПОЛНОСТЬЮ
+[services]
