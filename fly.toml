@@ -9,6 +9,3 @@ primary_region = "ams"
 
 [processes]
   worker = "python main.py"
-
-# ❗ ВАЖНО: НИКАКИХ http_service
-# ❗ НИКАКИХ checks
