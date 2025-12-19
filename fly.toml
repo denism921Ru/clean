@@ -1,11 +1,12 @@
 app = "clean-purple-star-4539"
+
 primary_region = "ams"
 
 [build]
   dockerfile = "Dockerfile"
 
-[env]
-  PYTHONUNBUFFERED = "1"
-
 [processes]
   worker = "python main.py"
+
+[env]
+  PYTHONUNBUFFERED = "1"
