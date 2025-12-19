@@ -1,5 +1,4 @@
 app = "clean-purple-star-4539"
-
 primary_region = "ams"
 
 [build]
@@ -7,6 +6,3 @@ primary_region = "ams"
 
 [processes]
   worker = "python main.py"
-
-[env]
-  PYTHONUNBUFFERED = "1"
